@@ -49,6 +49,8 @@ public class Sudoku extends LatinSquare implements Serializable {
 	private HashMap<Integer, SudokuCell> cells = new HashMap<Integer, SudokuCell>();
 
 	private eGameDifficulty eGameDifficulty;
+	
+	private int iMistakes;
 
 	/**
 	 * Sudoku - No-arg private constructor should set the eGameDifficulty to EASY by
@@ -79,6 +81,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 
 		this();
 		this.iSize = iSize;
+		this.iMistakes=0;
 
 		double SQRT = Math.sqrt(iSize);
 		if ((SQRT == Math.floor(SQRT)) && !Double.isInfinite(SQRT)) {
@@ -952,6 +955,15 @@ public class Sudoku extends LatinSquare implements Serializable {
 			return (SudokuCell) cells.get(Objects.hash(iRow, iCol));
 
 		}
-
 	}
+
+	public int getiMistakes() {
+		return iMistakes;
+	}
+
+	public void setiMistakes(int iMistakes) {
+		this.iMistakes = iMistakes;
+	}
+	
+	
 }

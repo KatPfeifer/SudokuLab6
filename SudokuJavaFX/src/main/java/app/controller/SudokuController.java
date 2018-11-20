@@ -41,6 +41,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import pkgEnum.eGameDifficulty;
 import pkgEnum.ePuzzleViolation;
 import pkgGame.Cell;
@@ -323,9 +324,8 @@ public class SudokuController implements Initializable {
 							Cell CellFrom = (Cell) db.getContent(myFormat);
 
 							if (!s.isValidValue(CellTo.getiRow(), CellTo.getiCol(), CellFrom.getiCellValue())) {
-								if (game.getShowHints()) {
-
-								}
+								s.setiMistakes(s.getiMistakes()+1);
+								System.out.println("The number of mistakes is " + s.getiMistakes());
 
 							}
 
@@ -340,6 +340,20 @@ public class SudokuController implements Initializable {
 						}
 						event.setDropCompleted(success);
 						event.consume();
+						s.getPuzzle()[CellTo.getiRow()][CellTo.getiCol()]=CellTo.getiCellValue();
+						if (s.ContainsZero()==false) {
+							if (s.isSudoku()==true) {
+								Label message = new Label ("You won!");
+								gpTop.getChildren().clear();
+								gpTop.add(message, 0, 0);
+							}
+						}
+					}
+				});
+				
+				paneTarget.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					public void handle(MouseEvent click) {
+						paneTarget.getChildren().clear();
 					}
 				});
 
