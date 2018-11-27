@@ -341,11 +341,17 @@ public class SudokuController implements Initializable {
 						event.setDropCompleted(success);
 						event.consume();
 						s.getPuzzle()[CellTo.getiRow()][CellTo.getiCol()]=CellTo.getiCellValue();
+						s.PrintPuzzle();
 						if (s.ContainsZero()==false) {
 							if (s.isSudoku()==true) {
 								Label message = new Label ("You won!");
 								gpTop.getChildren().clear();
 								gpTop.add(message, 0, 0);
+							}
+							else {
+								Label messagelost = new Label ("The puzzle is not solved");
+								gpTop.getChildren().clear();
+								gpTop.add(messagelost, 0, 0);
 							}
 						}
 					}
@@ -354,6 +360,8 @@ public class SudokuController implements Initializable {
 				paneTarget.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent click) {
 						paneTarget.getChildren().clear();
+						paneTarget.getCell().setiCellValue(0);
+						s.getPuzzle()[paneTarget.getCell().getiRow()][paneTarget.getCell().getiCol()]=0;
 					}
 				});
 
