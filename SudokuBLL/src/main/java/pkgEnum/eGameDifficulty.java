@@ -28,6 +28,10 @@ public enum eGameDifficulty {
 	public int getiDifficulty() {
 		return iDifficulty;
 	}
+	
+	public int getMaxMistakes() {
+		return MaxMistakes;
+	}
 
 	@Override
 	public String toString() {

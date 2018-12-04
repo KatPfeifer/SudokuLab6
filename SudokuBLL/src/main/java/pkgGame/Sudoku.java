@@ -180,9 +180,9 @@ public class Sudoku extends LatinSquare implements Serializable {
 			return false;
 		if (eActualGameDifficulty.getiDifficulty() >= this.eGameDifficulty.getiDifficulty())
 			return true;
-
 		return false;
 	}
+	
 
 	/**
 	 * getiSize - the UI needs to know the size of the puzzle
@@ -965,5 +965,8 @@ public class Sudoku extends LatinSquare implements Serializable {
 		this.iMistakes = iMistakes;
 	}
 	
+	public int getmaxmistakes() {
+		return eGameDifficulty.getMaxMistakes();
+	}
 	
 }

@@ -17,6 +17,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
@@ -325,7 +327,13 @@ public class SudokuController implements Initializable {
 
 							if (!s.isValidValue(CellTo.getiRow(), CellTo.getiCol(), CellFrom.getiCellValue())) {
 								s.setiMistakes(s.getiMistakes()+1);
-								System.out.println("The number of mistakes is " + s.getiMistakes());
+								if (s.getiMistakes()>=s.getmaxmistakes()) {
+									Alert alert=new Alert(AlertType.INFORMATION);
+									alert.setTitle("You lost!");
+									alert.setHeaderText(null);
+									alert.setContentText("You have made too many mistakes and lost the game. Please start a new game");
+									alert.showAndWait();
+								}
 
 							}
 
@@ -344,6 +352,11 @@ public class SudokuController implements Initializable {
 						s.PrintPuzzle();
 						if (s.ContainsZero()==false) {
 							if (s.isSudoku()==true) {
+								Alert alert2=new Alert(AlertType.INFORMATION);
+								alert2.setTitle("You won!");
+								alert2.setHeaderText(null);
+								alert2.setContentText("Congratulations, you have won the game!");
+								alert2.showAndWait();
 								Label message = new Label ("You won!");
 								gpTop.getChildren().clear();
 								gpTop.add(message, 0, 0);
